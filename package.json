@@ -5,11 +5,12 @@
   "description": "A package to run postgraphql",
   "main": "main.js",
   "dependencies": {
-    "postgraphql": "^2.4.1"
+    "postgraphql": "^2.4.1",
+    "wait-on": "^2.0.1"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "postgraphql -o -c $PGQL_CONNECTION -s $PGQL_SCHEMA -e $PGQL_SECRET",
+    "start": "wait-on tcp:$POSTGRES_HOST:$POSTGRES_PORT && postgraphql -o -s $PGQL_SCHEMA -e $PGQL_SECRET",
     "watch": "postgraphql -o -w -c $PGQL_CONNECTION -s $PGQL_SCHEMA -e $PGQL_SECRET"
   },
   "author": "James Sidhu <james.thomas.sidhu@gmail.com>"

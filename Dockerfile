@@ -6,7 +6,6 @@ ENV PGQL_SCHEMA="example_schema" \
 
 ADD start.sh /postgraphql
 
-RUN chmod -x /postgraphql/start.sh
 RUN npm install -g postgraphql
 
 EXPOSE 5000

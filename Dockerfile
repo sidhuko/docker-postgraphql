@@ -4,12 +4,12 @@ ENV PGQL_SCHEMA="example_schema" \
     PGQL_CONNECTION="postgres://localhost:5432" \
     PGQL_SECRET="aSecretTokenHere"
 
-ADD start.sh /postgraphql
+WORKDIR /var/nanowire
 
-WORKDIR /postgraphql
+ADD package.json /var/nanowire
 
-RUN npm install -g postgraphql
+RUN npm install
 
 EXPOSE 5000
 
-CMD ["./postgraphql/start.sh"]
+ENTRYPOINT ["npm"]

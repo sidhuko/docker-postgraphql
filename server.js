@@ -6,6 +6,7 @@ const CONNECTION = process.env.PGQL_CONNECTION;
 const OPTIONS = {
   schema: process.env.PGQL_SCHEMA,
   graphiql: process.env.PGQL_GRAPHIQL || true, // @todo set to true
+  watchPg: true
 };
 
 const app = express();

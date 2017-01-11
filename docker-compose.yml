@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  database:
+    image: postgres:9.5
+    volumes:
+      - ./install:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: nanowire # default value anyway
+      POSTGRES_USER: nanowire
+      POSTGRES_PASSWORD: nanowire
+      # POSTGRES_INITDB_ARGS:
+  graphql:
+    image: pgql
+    # image: sidhuko/docker-postgraphql
+    ports:
+      - 5000:5000
+    command: start
+    environment:
+      PGQL_CONNECTION: postgres://nanowire:nanowire@192.168.59.101:5432/nanowire
+      PGQL_SECRET: r4ndomk3y
+      PGQL_SCHEMA: n_public
+      WAIT_ON: 192.168.59.101:5432
+    depends_on:
+      - database
+  # cache:
+  #   image: redis:3.2
+  #   ports:
+  #     - 6379:6379

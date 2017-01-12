@@ -7,6 +7,8 @@ const JWT_TOKEN = process.env.PGQL_JWT_TOKEN || false;
 const DEFAULT_ROLE = process.env.PGQL_DEFAULT_ROLE || false;
 const GRAPHIQL = process.env.PGQL_GRAPHIQL || false;
 const JWT_SECRET = process.env.PGQL_JWT_SECRET || false;
+const CORS = process.env.PGQL_CORS || false;
+const RELAY = process.env.PGQL_RELAY || false;
 const WATCH = process.env.PGQL_WATCH || false;
 
 const app = express();
@@ -15,12 +17,18 @@ const options = {
   watchPg: process.env.PGQL_WATCH || false,
 };
 
+
+
 if (!SCHEMA) {
   throw Error("Must be supplied a schema");
 }
 
 if (!CONNECTION) {
   throw Error("Must be supplied a pg connection");
+}
+
+if (CORS) {
+  options.enableCors = true;
 }
 
 if (WATCH) {
@@ -34,6 +42,10 @@ if (JWT_SECRET) {
 if (GRAPHIQL) {
   options.graphiql = true;
   options.graphiqlRoute = GRAPHIQL;
+}
+
+if (RELAY) {
+  options.classicIds = true;
 }
 
 if (JWT_TOKEN) {

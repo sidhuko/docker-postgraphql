@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "wait-on --delay 2000 --verbose tcp:$WAIT_ON && node server.js",
+    "start": "wait-on --delay 3000 --verbose tcp:$WAIT_ON && node server.js",
     "watch": "wait-on --timeout 10000 --verbose tcp:$WAIT_ON && postgraphql --connection $PGQL_CONNECTION --host 0.0.0.0 --schema $PGQL_SCHEMA --secret $PGQL_SECRET --cors --watch"
   },
   "author": "James Sidhu <james.thomas.sidhu@gmail.com>"
